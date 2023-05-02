@@ -22,6 +22,15 @@ const (
 	// 演算子
 	ASSIGN = "=" // 代入演算子
 	PLUS = "+" // 加算演算子
+	MINUS = "-" // 減算演算子
+	ASTERISK = "*" // 乗算演算子
+	SLASH = "/" // 除算演算子
+
+	BANG = "!" // 否定演算子
+	LT = "<" // 比較演算子：小なり
+	GT = ">" // 比較演算子：大なり
+	EQ = "==" // 比較演算子：等しい
+	NOT_EQ = "!=" // 比較演算子：等しくない
 
 	// デリミタ：データを区切る区切り文字
 	COMMA = "," // カンマ
@@ -35,4 +44,28 @@ const (
 	// キーワード：特別な意味を持つ識別子
 	FUNCTION = "FUNCTION" // 関数
 	LET = "LET" // 変数宣言
+	TRUE = "TRUE" // 真
+	FALSE = "FALSE" // 偽
+	IF = "IF" // 条件分岐：もし
+	ELSE = "ELSE" // 条件分岐：それ以外
+	RETURN = "RETURN" // 戻り値
 )
+
+// キーワード(言語の一部としての文字列：関数，変数宣言など)のマップ
+var keywords = map[string]TokenType{
+	"fn": FUNCTION,
+	"let": LET,
+	"true": TRUE,
+	"false": FALSE,
+	"if": IF,
+	"else": ELSE,
+	"return": RETURN,
+}
+
+// 識別子を区別して，適切なトークンタイプを返す
+func LookupIdent(ident string) TokenType {
+	if tok, ok := keywords[ident]; ok { // キーワードの場合
+		return tok
+	}
+	return IDENT // キーワードでない場合は識別子
+}

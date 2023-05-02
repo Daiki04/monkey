@@ -14,6 +14,17 @@ func TestNextToken(t *testing.T) {
 	};
 
 	let result = add(five, ten);
+	!-/*5;
+	5 < 10 > 5;
+
+	if (5 < 10) {
+		return true;
+	} else {
+		return false;
+	}
+
+	10 == 10;
+	10 != 9;
 	`
 
 	// テストケース（構造体をもったスライス）
@@ -56,6 +67,43 @@ func TestNextToken(t *testing.T) {
 		{token.COMMA, ","}, // カンマ
 		{token.IDENT, "ten"}, // 識別子: 変数名
 		{token.RPAREN, ")"}, // 右括弧
+		{token.SEMICOLON, ";"}, // セミコロン
+		{token.BANG, "!"}, // 接頭辞演算子
+		{token.MINUS, "-"}, // 減算演算子
+		{token.SLASH, "/"}, // 除算演算子
+		{token.ASTERISK, "*"}, // 乗算演算子
+		{token.INT, "5"}, // 整数リテラル
+		{token.SEMICOLON, ";"}, // セミコロン
+		{token.INT, "5"}, // 整数リテラル
+		{token.LT, "<"}, // 比較演算子
+		{token.INT, "10"}, // 整数リテラル
+		{token.GT, ">"}, // 比較演算子
+		{token.INT, "5"}, // 整数リテラル
+		{token.SEMICOLON, ";"}, // セミコロン
+		{token.IF, "if"}, // キーワード: 条件分岐
+		{token.LPAREN, "("}, // 左括弧
+		{token.INT, "5"}, // 整数リテラル
+		{token.LT, "<"}, // 比較演算子
+		{token.INT, "10"}, // 整数リテラル
+		{token.RPAREN, ")"}, // 右括弧
+		{token.LBRACE, "{"}, // 左波括弧
+		{token.RETURN, "return"}, // キーワード: 戻り値
+		{token.TRUE, "true"}, // 真偽値リテラル
+		{token.SEMICOLON, ";"}, // セミコロン
+		{token.RBRACE, "}"}, // 右波括弧
+		{token.ELSE, "else"}, // キーワード: 条件分岐
+		{token.LBRACE, "{"}, // 左波括弧
+		{token.RETURN, "return"}, // キーワード: 戻り値
+		{token.FALSE, "false"}, // 真偽値リテラル
+		{token.SEMICOLON, ";"}, // セミコロン
+		{token.RBRACE, "}"}, // 右波括弧
+		{token.INT, "10"}, // 整数リテラル
+		{token.EQ, "=="}, // 比較演算子
+		{token.INT, "10"}, // 整数リテラル
+		{token.SEMICOLON, ";"}, // セミコロン
+		{token.INT, "10"}, // 整数リテラル
+		{token.NOT_EQ, "!="}, // 比較演算子
+		{token.INT, "9"}, // 整数リテラル
 		{token.SEMICOLON, ";"}, // セミコロン
 		{token.EOF, ""}, // 終端記号
 	}
